@@ -1,17 +1,19 @@
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  FlatList,
-} from 'react-native';
+import {Text, StyleSheet, View, Button, FlatList} from 'react-native';
 import React, {useState} from 'react';
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
 export default function App() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
+
+  function startAddGoalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
+  }
 
   function addGoalHandler(enteredGoalText) {
     setCourseGoals(currentCourseGoal => [
@@ -19,6 +21,7 @@ export default function App() {
       {text: enteredGoalText, id: Math.random().toString()},
     ]);
     console.log(enteredGoalText);
+    endAddGoalHandler();
   }
 
   function deleteNotes(id) {
@@ -29,8 +32,16 @@ export default function App() {
   }
   return (
     <View style={styles.appContainer}>
-      <Text style={styles.headerTitle}>Add Notes</Text>
-      <GoalInput onAddGoal={addGoalHandler} />
+      <Button
+        title="List Of Notes"
+        color={'#ff3434'}
+        onPress={startAddGoalHandler}
+      />
+      <GoalInput
+        visible={modalIsVisible}
+        onAddGoal={addGoalHandler}
+        onCancel={endAddGoalHandler}
+      />
       <View style={styles.goalContainer}>
         <FlatList
           data={courseGoals}
@@ -54,14 +65,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  headerTitle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 5,
-    margin: 10,
-  },
   appContainer: {
     flex: 1,
     paddingTop: 50,
