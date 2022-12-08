@@ -6,6 +6,7 @@ import {
   Modal,
   Text,
   Alert,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
 import LottieView from 'lottie-react-native';
@@ -28,9 +29,9 @@ function GoalInput(props) {
 
   return (
     <Modal visible={props.visible} animationType="slide">
-      <View style={styles.headerView}>
+      <SafeAreaView style={styles.headerView}>
         <Text style={styles.headerTitle}>Add Notes</Text>
-      </View>
+      </SafeAreaView>
       <View style={styles.mainView}>
         <LottieView
           source={require('../assets/notes.json')}
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    width: 100,
+    width: '40%',
     marginHorizontal: 8,
   },
 });
