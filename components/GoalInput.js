@@ -47,7 +47,7 @@ function GoalInput(props) {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
-          placeholder="Your Notes!"
+          placeholder="Please Enter Your Notes!"
           onChangeText={goalInputHandler}
           value={enteredGoalText}
         />
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     paddingBottom: 24,
     borderBottomWidth: 4,
-    borderBottomColor: 'red',
     padding: 16,
+    backgroundColor: '#6c6dff',
   },
   textInput: {
     borderWidth: 3,

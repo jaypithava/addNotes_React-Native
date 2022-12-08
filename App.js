@@ -33,7 +33,7 @@ export default function App() {
   return (
     <View style={styles.appContainer}>
       <Button
-        title="List Of Notes"
+        title="Click To Add New Notes"
         color={'#ff3434'}
         onPress={startAddGoalHandler}
       />
